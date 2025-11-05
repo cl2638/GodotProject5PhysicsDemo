@@ -5,7 +5,7 @@ This project demonstrates several interactive physics-based mechanics in Godot 4
 
 - **Chain/Rope Physics:** A rope (the strung together Godot face nodes) , made of multiple `ChainSegment` nodes connected with `PinJoint2D`. The rope swings realistically, especially at the bottom segments, and reacts to the player hitting it.  
   - *Note* The rope does not swing excessively when the player interacts; the top is pinned to keep the rope held up, however pinning the top chain segment resulted in less movement.
-              The rope does move with swinging increasing towards the bottom of the rope, however Player node interactiondoesn't cause swinging. 
+              The rope does move with swinging increasing towards the bottom of the rope, however Player node collision doesn't cause swinging. 
 
 - **Exploding Particles:** A `GpuParticles2D` node shows idle particles until the player collides with it. On collision, it explodes into a burst of particles, simulating an impact effect.
 
