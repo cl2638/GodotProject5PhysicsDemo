@@ -4,7 +4,7 @@
 This project demonstrates several interactive physics-based mechanics in Godot 4.4 using C# (Mono). The project includes:
 
 - **Chain/Rope Physics:** A rope made of multiple `ChainSegment` nodes connected with `PinJoint2D`. The rope swings realistically, especially at the bottom segments, and reacts to the player hitting it.  
-  - *Note:* The rope does not swing excessively when the player interacts; the top is pinned to prevent unrealistic motion.
+  - *Note* The rope does not swing excessively when the player interacts; the top is pinned to prevent unrealistic motion.
 
 - **Exploding Particles:** A `GpuParticles2D` node shows idle particles until the player collides with it. On collision, it explodes into a burst of particles, simulating an impact effect.
 
