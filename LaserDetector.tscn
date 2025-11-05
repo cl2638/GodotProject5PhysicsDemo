@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://tewaheo6xvqn"]
+
+[ext_resource type="Script" uid="uid://bk3oc50ibmgyp" path="res://LaserDetector.cs" id="1_7d5bj"]
+
+[node name="LaserDetector" type="Node2D"]
+script = ExtResource("1_7d5bj")
+PlayerPath = NodePath("../Player")

@@ -1,0 +1,112 @@
+[gd_scene load_steps=11 format=3 uid="uid://1ls0wi7wgrcy"]
+
+[ext_resource type="Script" uid="uid://binuh5877mmr6" path="res://ParticleController.cs" id="1_80nbo"]
+[ext_resource type="Shader" uid="uid://b42ijwr4bkqqy" path="res://custom_particle.gdshader" id="1_e2o6t"]
+[ext_resource type="Texture2D" uid="uid://d37jd5130ho1v" path="res://graybackground.jpg" id="1_j5wjh"]
+[ext_resource type="Texture2D" uid="uid://dnc1xscpnw110" path="res://whitecircle2.png" id="2_feb5d"]
+[ext_resource type="Script" uid="uid://dum0f25lpn477" path="res://PhysicsDemo.cs" id="4_fc0e3"]
+[ext_resource type="PackedScene" uid="uid://c4xubkhvpg4ot" path="res://ChainSegment.tscn" id="5_7jktm"]
+[ext_resource type="PackedScene" uid="uid://cb6dke3yo8xpv" path="res://player.tscn" id="6_ryrav"]
+[ext_resource type="PackedScene" uid="uid://tewaheo6xvqn" path="res://LaserDetector.tscn" id="7_eow3j"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_feb5d"]
+shader = ExtResource("1_e2o6t")
+shader_parameter/color_bottom = Vector4(1, 0.5, 0, 1)
+shader_parameter/color_top = Vector4(1, 1, 1, 1)
+shader_parameter/wave_intensity = 0.05
+shader_parameter/wave_speed = 5.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fc0e3"]
+particle_flag_disable_z = true
+angle_min = 1.0728835e-05
+angle_max = 354.80002
+initial_velocity_max = 347.83
+gravity = Vector3(0, 98, 0)
+turbulence_initial_displacement_min = 97.3
+turbulence_initial_displacement_max = 97.3
+
+[node name="Game" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(-211.50018, 611.0002)
+scale = Vector2(20.745512, 24.914286)
+texture = ExtResource("1_j5wjh")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -836.0
+offset_top = -619.00006
+offset_right = 962.0
+offset_bottom = -36.00006
+scale = Vector2(2.191403, 2.3200016)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+text = "Game Environment for Project 5 
+
+ Move with the arrow keys to explore! 
+Interact with the rope, lasers, and particle effects 
+to see physics, raycasting, and shader systems in action. 
+Triggering the lasers will display a detection message.
+Hitting the middle of the particle triggers a particle explosion!"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 75.99994
+offset_top = 525.99994
+offset_right = 1874.0
+offset_bottom = 1109.0
+scale = Vector2(2.191403, 2.3200016)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+text = "Hitting the middle of the particle triggers a particle explosion!"
+
+[node name="Label4" type="Label" parent="."]
+offset_left = 297.0
+offset_top = -169.00002
+offset_right = 2095.0
+offset_bottom = 414.00006
+scale = Vector2(1.9597507, 2.4396381)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+text = "Triggering the lasers will 
+display a detection message.
+"
+
+[node name="Label5" type="Label" parent="."]
+offset_left = -976.0
+offset_top = 56.999985
+offset_right = 822.0
+offset_bottom = 640.00006
+scale = Vector2(1.9597507, 2.4396381)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+text = "Triggering the lasers will 
+display a detection message.
+"
+
+[node name="ParticleSystem" type="Node2D" parent="."]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="ParticleSystem"]
+process_physics_priority = 1
+material = SubResource("ShaderMaterial_feb5d")
+position = Vector2(391, 253)
+amount = 10
+texture = ExtResource("2_feb5d")
+lifetime = 5.52
+speed_scale = 7.83
+process_material = SubResource("ParticleProcessMaterial_fc0e3")
+script = ExtResource("1_80nbo")
+
+[node name="PhysicsDemo" type="Node2D" parent="."]
+script = ExtResource("4_fc0e3")
+SegmentScene = ExtResource("5_7jktm")
+ChainSegments = 4
+
+[node name="LaserDetector" parent="." instance=ExtResource("7_eow3j")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.5, 0.5)
+
+[node name="Player" parent="." instance=ExtResource("6_ryrav")]
+position = Vector2(-1019, 456)
+
+[node name="LaserDetector2" parent="." instance=ExtResource("7_eow3j")]
+position = Vector2(-1233, 208)
